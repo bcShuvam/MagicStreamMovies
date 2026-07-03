@@ -3,19 +3,20 @@ package main
 import (
 	"fmt"
 
-	controller "github.com/bcShuvam/MagicStreamMovies/Server/MagicStreamMoviesServer/controllers"
+	// Give it the 'controller' alias explicitly right here
+	controller "MagicStreamMoviesServer/controllers"
+
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
-	// fmt.Println("Hello, go world!")
-
 	router := gin.Default()
 
 	router.GET("/hello", func(c *gin.Context) {
 		c.String(200, "Hello, MagicStreamMovies!")
 	})
 
+	// This now matches the 'controller' alias perfectly
 	router.GET("/movies", controller.GetMovies())
 
 	if err := router.Run(":8080"); err != nil {
